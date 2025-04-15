@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * *
- *	author: omega
+ *	author: leon fiser
  *	created: 03-02-2025
  * * * * * * * * * * * * * * * * */
 
@@ -7,49 +7,9 @@
 
 using namespace std;
 
-struct buffer : streambuf {
-    int overflow(int x) {
-        return x;
-    }
-};
-
-static buffer null_buffer;
-static ostream null_stream(&null_buffer);
-
-void local() {
-    #if defined(LOCAL_FLAG)
-        freopen("/home/omega/Documents/input.in", "r", stdin);
-        freopen("/home/omega/Documents/output.out", "w", stdout);
-        freopen("/home/omega/Documents/error.err", "w", stderr);
-        #define debug cerr
-    #else
-        #define debug null_stream
-    #endif
-}
-
-#define ff first
-#define ss second
-#define pb emplace_back
-#define pob pop_back
-#define pf emplace_front
-#define pof pop_front
-#define endl '\n'
-
 typedef long long ll;
-typedef unsigned long long ull;
-typedef unsigned int uint;
-typedef pair<int, int> ii;
-typedef tuple<int, int, int> iii;
-typedef pair<ll, ll> pll;
-typedef tuple<ll, ll, ll> tlll;
-typedef complex<double> cd;
-typedef long double ld;
 
-const ll mod = ll(1e9 + 7);
-const int maxn = int(1e6) + 10;
 const int maxm = int(1e3) + 10;
-const int lg = 31;
-const long double eps = (long double)(1e-9);
 
 struct ulomek {
     ll num, den;
@@ -295,11 +255,11 @@ void simplex(int n, int m, int faza) {
 
     }
 
-    debug << "error\n";
+    cerr << "error\n";
 
 }
 
-void solve() {
+signed main() {
 
     int n, m; cin >> n >> m;
 
@@ -317,21 +277,9 @@ void solve() {
         cin >> b[i];
     }
 
-    simplex(n,m,1); // print(0,0,n,m);
-    simplex(n,m,2); // print(0,0,n,m);
-
-}
-
-signed main() {
-    local();
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-
-    int t = 1; // cin >> t;
-    while (t--) {
-        solve();
-    }
+    simplex(n,m,1);
+    simplex(n,m,2);
 
     return 0;
+
 }
